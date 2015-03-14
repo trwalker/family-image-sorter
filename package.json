@@ -1,0 +1,25 @@
+{
+  "name": "family-image-sorter",
+  "version": "1.0.0",
+  "description": "Node app to sort family images into a folder structure based on date",
+  "main": "server.js",
+  "scripts": {
+    "test": "mocha",
+    "install-local": "npm install -g mocha & npm install -g node-inspector & npm install",
+    "start": "node server.js 1 prod 127.0.0.1 3000 9000",
+    "debug": "node-debug server.js 0 dev 127.0.0.1 3000 9000"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/trwalker/family-image-sorter.git"
+  },
+  "keywords": [
+    "none"
+  ],
+  "author": "Tim Walker",
+  "license": "",
+  "devDependencies": {
+  },
+  "dependencies": {
+  }
+}
