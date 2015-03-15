@@ -12,7 +12,6 @@ function initializeSettings(settings) {
 
 function createArgumentSettings(settings) {
   settings.sortFolder = commandLineArgs[2] ? commandLineArgs[2] : null;
-  settings.outputFolder = commandLineArgs[3] ? commandLineArgs[3] : null;
 }
 
 var settingsConfig = new SettingsConfig();
