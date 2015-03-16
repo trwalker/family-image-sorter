@@ -1,4 +1,4 @@
-const mediaItemFolderFormat = '{year}-{month}-Random';
+const mediaItemFolderFormat = '{year}-{month}';
 
 var fs = require('fs');
 var path = require('path');
@@ -34,14 +34,12 @@ function processAndSortMediaItems(mediaItems, sortFolder) {
 
     var mediaItemStats = fs.statSync(mediaItemFullPath);
 
-
-
     if(mediaItemStats.isFile() && !isSystemFile(mediaItemFileName)) {
       var mediaItemModel = new MediaItemModel();
       mediaItemModel.fileName = mediaItemFileName;
       mediaItemModel.fullPath = mediaItemFullPath;
       mediaItemModel.extension = path.extname(mediaItemFullPath);
-      mediaItemModel.createDate = mediaItemStats.ctime;
+      mediaItemModel.createDate = mediaItemStats.mtime;
 
       mediaItemModels.push(mediaItemModel);
     }
@@ -72,26 +70,26 @@ function createSortedFolder(sortFolder) {
 }
 
 function moveImagesAndVideos(mediaItemModels, sortedItemsFolderPath) {
-  var images = [];
-  var videos = [];
+  var imageMediaItemModels = [];
+  var videoMediaItemModels = [];
 
   for(var i = 0, length = mediaItemModels.length; i < length; i++) {
 
     var mediaItemModel = mediaItemModels[i];
 
     if (isImage(mediaItemModel.extension)) {
-      images.push(mediaItemModel);
+      imageMediaItemModels.push(mediaItemModel);
     }
     else if (isVideo(mediaItemModel.extension)) {
-      videos.push(mediaItemModel);
+      videoMediaItemModels.push(mediaItemModel);
     }
     else {
       throw 'Unknown media type: ' + mediaItemModel.fullPath;
     }
   }
 
-  moveImages(images, sortedItemsFolderPath);
-  moveVideos(videos, sortedItemsFolderPath);
+  moveImages(imageMediaItemModels, sortedItemsFolderPath);
+  moveVideos(videoMediaItemModels, sortedItemsFolderPath);
 }
 
 function isImage(extension) {
@@ -169,7 +167,7 @@ function moveMediaItem(mediaItemModel, parentFolderPath) {
 
   var newMediaItemPath = path.resolve(mediaItemFolderPath, mediaItemModel.fileName);
 
-  fs.renameSync(mediaItemModel.fullPath, newMediaItemPath);
+  fs.rename(mediaItemModel.fullPath, newMediaItemPath);
 }
 
 MediaItemSortService.prototype = {
