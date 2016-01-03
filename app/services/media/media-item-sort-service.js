@@ -49,7 +49,7 @@ function processAndSortMediaItems(mediaItems, sortFolder) {
 }
 
 function isSystemFile(fileName) {
-  return fileName.indexOf('.') === 0;
+  return fileName.indexOf('.') === 0 || fileName.toLowerCase() === 'thumbs.db';
 }
 
 function moveMediaItems(mediaItemModels, sortFolder) {
