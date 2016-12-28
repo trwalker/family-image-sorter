@@ -83,9 +83,6 @@ function moveImagesAndVideos(mediaItemModels, sortedItemsFolderPath) {
     else if (isVideo(mediaItemModel.extension)) {
       videoMediaItemModels.push(mediaItemModel);
     }
-    else {
-      throw 'Unknown media type: ' + mediaItemModel.fullPath;
-    }
   }
 
   moveImages(imageMediaItemModels, sortedItemsFolderPath);
