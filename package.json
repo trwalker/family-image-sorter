@@ -4,7 +4,7 @@
   "description": "Node app to sort family images into a folder structure based on date",
   "main": "application.js",
   "scripts": {
-    "start": "node application.js /Users/tim/Desktop/Media"
+    "start": "node app.js /Users/tim/Desktop/Media"
   },
   "repository": {
     "type": "git",
