@@ -96,6 +96,7 @@ function isImage(extension) {
         case '.png':
         case '.gif':
         case '.bmp':
+        case '.heic':
             return true;
         default:
             return false;
@@ -109,7 +110,6 @@ function isVideo(extension) {
         case '.m4p':
         case '.mov':
         case '.wmv':
-        case '.heic':
             return true;
         default:
             return false;
